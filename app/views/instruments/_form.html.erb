@@ -1,0 +1,132 @@
+<div class="columns">
+  <div class="column is-8 is-centered">
+<style>
+form input {
+	margin:15px 0;
+	padding:15px 10px;
+	width:100%;
+	outline:none;
+	border:1px solid #bbb;
+	border-radius:20px;
+	display:inline-block;
+	
+}
+</style>
+    <%= simple_form_for @instrument, html: { multipart: true } do |f| %>
+      <%= f.error_notification %>
+
+        <div class="columns">
+
+          <div class="field column is-4">
+            <div class="control">
+            <label class="label">Tên sản phẩm</label>
+              <%= f.input_field :title , required: true, input_html: { class: "input"}, wrapper: false, label_html: { class:"label" } %>
+            </div>
+          </div>
+
+          <div class="field column is-4">
+            <div class="control">
+            <label class="label">Giá</label>
+              <%= f.input_field :price, required: true, input_html: { class:"input", maxlength: 11  }, wrapper: false, label_html: { class:"label" } %>
+            </div>
+          </div>
+           <div class="field column is-4">
+          <div class="control">
+            <label class="label">Loại sản phẩm:</label>
+            <%= f.input_field :model, required: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
+          </div>
+        </div>
+        </div>
+
+      <div class="columns">
+       
+
+        <div class="field column">
+          <div class="control">
+            <label class="label">Mô tả</label>
+            <%= f.input_field :description, required: true, input_html: { class:"textarea " }, wrapper: false, label_html: { class:"label" } %>
+          </div>
+        </div>
+      </div>
+
+        <div class="columns">
+          <div class="field column is-4">
+            <div class="control">
+              <label class="label">Đế bánh</label>
+              <div class="control has-icons-left">
+                <span class="select">
+                  <%= f.input_field :brand, collection: Instrument::BRAND, prompt: "Chọn đế bánh" %>
+                </span>
+                <span class="icon is-small is-left">
+                  <i class="fa fa-tag"></i>
+                </span>
+              </div>
+            </div>
+           </div>
+
+          <div class="field column is-4">
+            <div class="control">
+              <label class="label">Chọn size bánh</label>
+              <div class="control has-icons-left">
+                <span class="select">
+                  <%= f.input_field :finish, collection: Instrument::FINISH, prompt: "Chọn size" %>
+                </span>
+                <span class="icon is-small is-left">
+                  <i class="fa fa-paint-brush"></i>
+                </span>
+              </div>
+            </div>
+           </div>
+
+          <div class="field column is-4">
+            <div class="control">
+              <label class="label">Tùy chọn thêm</label>
+              <div class="control has-icons-left">
+                <span class="select">
+                  <%= f.input_field :condition, collection: Instrument::CONDITION, prompt: "Thêm phô mai" %>
+                </span>
+                <span class="icon is-small is-left">
+                  <i class="fa fa-paint-brush"></i>
+                </span>
+              </div>
+            </div>
+           </div>
+         </div>
+
+        <div class="field">
+          <div class="control">
+            <label class="label">Thêm ảnh</label>
+              <div class="file">
+              <label class="file-label">
+                <%= f.input :image, as: :file, input_html: { class:"file-input instrument-image" }, label: false, wrapper: false %>
+                  <span class="file-cta">
+                    <span class="file-icon"><i class="fa fa-upload"></i></span>
+                    <span class="file-label">chọn ảnh</span>
+                  </span>
+              </label>
+              </div>
+            </div>
+          </div>
+          <output id="list"></output>
+        <hr />
+       <div class="columns">
+
+          <div class="field column is-4">
+            <div class="control">
+            <%=  f.button :submit, "thêm", class: 'button is-warning' %></div>
+            
+            </div>
+          </div>
+
+          <div class="field column is-4">
+            <div class="control">
+            <%= link_to 'Hủy bỏ', instruments_path, class:'button is-light' %>
+           </div>
+          </div>
+          
+        </div>
+       
+
+      <% end %>
+  </div>
+</div>

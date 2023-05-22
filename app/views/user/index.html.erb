@@ -1,0 +1,53 @@
+<% content_for :header do %>
+<section class="hero is-warning">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Chào mừng đến với pizza Cikpah!
+      </h1>
+    </div>
+  </div>
+</section>
+<% end %>
+
+	<div> 
+
+<div class="w3-content w3-section w3-center" style="max-width:100%"> 
+  <img class="mySlides" src="https://thepizzacompany.vn/images/thumbs/000/0002411__Banner_HDE50.jpeg" style="width:100%">
+  <img class="mySlides" src="https://thepizzacompany.vn/images/thumbs/000/0002634_BannerSlide_Combo(1200x480).jpeg" style="width:100%">
+  <img class="mySlides" src="https://thepizzacompany.vn/images/thumbs/000/0002641_Banner-1200x480.jpeg" style="width:100%">
+  <img class="mySlides" src="https://thepizzacompany.vn/images/thumbs/000/0002645_Banner-Slider-ComBoTet.jpeg" style="width:100%">
+  <img class="mySlides" src="https://thepizzacompany.vn/images/thumbs/000/0002370_2.jpeg" style="width:100%">
+  <img class="mySlides" src="https://thepizzacompany.vn/images/thumbs/000/0002652_Banner-Slider-2.jpeg" style="width:100%">
+</div>
+
+<script>
+var myIndex = 0;
+carousel();
+
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}    
+  x[myIndex-1].style.display = "block";  
+  setTimeout(carousel, 5000); // Change image every 2 seconds
+}
+</script>
+</div>
+<h3 class="my-4"><a href="KhuyenMai.html" style="color: red; font-size: 40px">Ưu đãi đặc biệt</a></h3>
+ <table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th > <%= image_tag("anh/KhuyenMai/1.png", size:"370x250")%></th>
+      <th > <%= image_tag("anh/KhuyenMai/2.png", size:"370x250")%></th>
+      <th> <%= image_tag("anh/KhuyenMai/3.png", size:"370x250")%></th>
+      <th> <%= image_tag("anh/KhuyenMai/4.png", size:"370x250")%></th>
+
+    </tr>
+  </thead>
+</table>
+

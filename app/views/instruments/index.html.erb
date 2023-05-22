@@ -1,0 +1,66 @@
+<% content_for :header do %>
+<section class="hero is-warning">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Hôm nay ăn gì? Cikpah hương vị Châu Âu ngay bên bạn
+      </h1>
+    </div>
+  </div>
+</section>
+<% end %>
+	<div> 
+
+<div class="w3-content w3-section w3-center" style="max-width:100%"> 
+  <img class="mySlides" src="https://thepizzacompany.vn/images/thumbs/000/0002411__Banner_HDE50.jpeg" style="width:100%">
+  <img class="mySlides" src="https://thepizzacompany.vn/images/thumbs/000/0002634_BannerSlide_Combo(1200x480).jpeg" style="width:100%">
+  <img class="mySlides" src="https://thepizzacompany.vn/images/thumbs/000/0002641_Banner-1200x480.jpeg" style="width:100%">
+  <img class="mySlides" src="https://thepizzacompany.vn/images/thumbs/000/0002645_Banner-Slider-ComBoTet.jpeg" style="width:100%">
+  <img class="mySlides" src="https://thepizzacompany.vn/images/thumbs/000/0002370_2.jpeg" style="width:100%">
+  <img class="mySlides" src="https://thepizzacompany.vn/images/thumbs/000/0002652_Banner-Slider-2.jpeg" style="width:100%">
+</div>
+
+<script>
+var myIndex = 0;
+carousel();
+
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}    
+  x[myIndex-1].style.display = "block";  
+  setTimeout(carousel, 5000); // Change image every 2 seconds
+}
+</script>
+</div>
+<div class="instrument-index-grid pt4">
+  <% @instruments.each do |instrument| %>
+
+    <div class="instrument border-light">
+      <div class="instrument-thumb ">
+      <%= link_to image_tag(instrument.image_url(:thumb)), instrument %>
+      
+      </div>
+
+
+    <div class="pa3">
+
+      <h3 class="fw7 f4 title"><%= link_to instrument.title, instrument %></h3>
+
+      <p class="has-text-gray fg pt1">Người bán: <%= (instrument.user.name) %></p>
+
+      <p class="f3 fw6 has-text-right pt2 price"><%=(instrument.price) %> VNĐ</p>
+
+      <% if instrument_path(instrument) %>
+         <%= link_to 'Chỉnh sửa', edit_instrument_path(instrument), class: "button is-small" %>
+         <%= link_to 'Xóa', instrument, method: :delete, data: { confirm: "Bạn có chắc sẽ xóa sản phẩm này?" }, class: "button is-small" %>
+      <% end %>
+
+    </div>
+  </div>
+  <% end %>
+</div><br><br><hr>

@@ -1,0 +1,2 @@
+module MonkhacHelper
+end

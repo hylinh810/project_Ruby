@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CIKPAH</title>
+    <%= csrf_meta_tags %>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body class="<%= yield (:body_class) %>">
+    <% if flash[:notice] %>
+      <div class="notification is-success global-notification">
+        <p class="notice"><%= notice %></p>
+      </div>
+    <% end %>
+    <% if flash[:alert] %>
+    <div class="notification is-danger global-notification">
+      <p class="alert"><%= alert %></p>
+    </div>
+    <% end %>
+     <nav class="navbar is-warning" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <%= image_tag("anh/logo.png",size: "80x60", alt:"logo")%>
+
+        <%= link_to root_path, class:"navbar-item" do %>
+         
+                   <h1 class="title is-5" style="font-size:17px;">TRANG CHỦ</h1>
+
+         
+        <% end  %>
+        <%= link_to root_path, class:"navbar-item" do %>
+         
+         <a  href="/instruments" style="padding:22px"><h1 class="title is-5" style="font-size:17px;">SẢN PHẨM</h1></a>
+         
+        <% end  %>
+        <%= link_to root_path, class:"navbar-item" do %>
+         
+         <a  href="/monkhac" style="padding:22px"><h1 class="title is-5"  style="font-size:17px;">MÓN PHỤ</h1></a>
+         
+        <% end  %>
+        <%= link_to root_path, class:"navbar-item" do %>
+         
+         <a  href="/nuocuong" style="padding:22px"><h1 class="title is-5"  style="font-size:17px;">NƯỚC UỐNG</h1></a>
+         
+        <% end  %>
+      <div class="navbar-burger burger" data-target="navbar">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+      <div id="navbar" class="navbar-menu">
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="field is-grouped">
+
+             <% if total_cart_items %>
+              <%= link_to cart_path(@cart), class:"navbar-item button is-warning" do %>
+              <span class="icon is-small">
+                <i class="fa fa-shopping-cart"></i>
+              </span>
+              <span>Giỏ hàng
+                <%= cart_count_over_one %>
+                </span>
+              <% end %>
+            <% end %>
+            <% if user_signed_in? %>
+              <%= link_to 'Thêm sản phẩm', new_instrument_path, class: "navbar-item button is-dark" %>
+
+              <div class="navbar-item has-dropdown is-hoverable">
+                <%= link_to 'Tài khoản', edit_user_registration_path, class: "navbar-link" %>
+                <div class="navbar-dropdown is-right">
+                  <%= link_to current_user.name, edit_user_registration_path, class:"navbar-item" %>
+                  <%= link_to "Đăng xuất", destroy_user_session_path, method: :delete, class:"navbar-item" %>
+                </div>
+              </div>
+            <% else %>
+            <%= link_to "Đăng nhập", new_user_session_path, class:"navbar-item button is-warning" %>
+            <%= link_to "Đăng ký", new_user_registration_path, class:"navbar-item button is-warning"%>
+            <% end %>
+
+            </div>
+          </div>
+        </div>
+    </div>
+  </nav>
+
+  <%= yield(:header) %>
+
+  <div class="container">
+
+    <%= yield %>
+
+  </div>
+  <footer class="footer-area black-bg pt-60">
+          <div class="container">
+                <div class="footer-top">
+                      <center><div class="footer-logo text-center">
+                        <a href="index.html">
+                          <%= image_tag("anh/logo.png",size: "80x60", alt:"logo")%>
+                        
+                       </a>
+                        <p>NGON SẠCH RẺ KHỎE <br> Pizza ngon là CIKPAH</p>
+                    </div></center><br><br>
+                 
+    <center>
+    <div class="col">
+      <form action="mailto: lethiphuongluong181220@gmail.com" method="get">
+		<center>
+			<table border="1" cellpadding="9px">
+				<td>
+					<center>
+						<b>HỘP THƯ GÓP Ý</b>
+					
+					</center><br>
+				    <b>Họ và tên&emsp;:</b> <input cols="70" type="text" name="subject" id="subject"><br> <br>
+					<b>Email&emsp;&emsp;&emsp;:</b>   <input type="text" name=""> <br><br>
+					<b>Nội dung góp ý</b> <br>
+					<textarea rows="7" cols="90" name="body" id="body" ></textarea>
+					<center>
+						<small><b>Cảm ơn đóng góp ý kiến của quý khách</b></small><br>
+						<form style="position: absolute;
+						             top: 50%;
+                                     left: 50%;
+                                     width: 300px;
+                                     height: 1.4em;
+                                     margin-top: -3.7em;
+                                     margin-left: -180px;">
+                           <input value="Gửi" type="submit">
+                        </form>          
+					</center>
+				</td>
+			</table>
+		</center>
+	</form>
+    </div><br><br>
+    <table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th > <td> <%= image_tag("anh/mail.png", size:"120x120")%></td> 
+                             
+                      
+                          
+                               <td> <h1 style="font-size: 20px"> ltpluong.19it3@vku.udn.vn</h1>
+                               <hr>
+                                <h1 style="font-size: 20px">htylinh.19it3@vku.udn.vn</h1>
+                                <hr>
+                                <h1 style="font-size: 20px">tthhoa.19it3@vku.udn.vn</h1>
+                            </td></th>
+      <th ><td>
+                              <%= image_tag("anh/fb.png", size:"120x120")%>
+                              </td>
+                            <td>
+                                <h1><a href="https://www.facebook.com/profile.php?id=100008387294906" style=" font-size: 20px">Lương Lê</a></h1>
+                                <hr>
+                                <h1><a href="https://www.facebook.com/profile.php?id=100012882978336" style=" font-size: 20px">Huỳnh Yến Linh</a></h1>
+                                <hr>
+                                <h1><a href="https://www.facebook.com/hanhhoatranthi" style=" font-size: 20px">Hạnh Hòa</a></h1>
+                            </td></th>
+      <th> <td>
+                              <%= image_tag("anh/goi.png", size:"120x120")%>
+                              </td>
+                           <td>
+                                <h1 style="font-size: 20px">0989055432</h1>
+                                <hr>
+                                <h1 style="font-size: 20px">0345852654</h1>
+                            </td></th>
+
+    </tr>
+  </thead>
+</table>
+           </center>       
+  
+  </div></div>
+</footer>
+  
+  </body>
+</html>
